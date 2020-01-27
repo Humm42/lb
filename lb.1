@@ -1,0 +1,38 @@
+.Dd January 23, 2020
+.Dt LB 1
+.Os
+.Sh NAME
+.Nm lb
+.Nd "execute command on newlines"
+.Sh SYNOPSIS
+.Nm
+.Op Fl t Ar time
+.Op Ar command Op Ar params ...
+.Sh DESCRIPTION
+.Nm
+reads input from stdin and runs a command on every newline it encounters.
+The command is only executed, if the last newline encountered was before a
+certain time, 30 seconds by default.
+.Pp
+.Fl t
+changes the minimal time between command executions.
+.Pp
+.Ar command
+specifies the command to execute, the default is:
+.Dl beep
+.Sh "EXIT STATUS"
+.Ex -std
+.Sh EXAMPLES
+Runs sic(1) with message notifications:
+.Dl sic -h chat.freenode.net | lb -t60
+.Sh "SEE ALSO"
+.Xr beep 1 , Xr sic 1
+.Sh HISTORY
+.Nm
+first appeared in 2020. It was used to notify Humm when new conversations
+started in IRC channels: “lb” stands for “line
+.Xr beep 1 Ns ”.
+.Sh AUTHORS
+.An Humm
+.Sh BUGS
+Yes.
